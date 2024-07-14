@@ -241,3 +241,5 @@ function App() {
   <FiSearch size={25} color="#FFF"/>
 </button>
 ```
+
+## Preparando para requisições API
