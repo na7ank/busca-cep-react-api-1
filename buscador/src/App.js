@@ -6,7 +6,11 @@ import './styles.css'
 
 function App() {
 
-  const [input, setInput] = useState('Teste useState')
+  const [input, setInput] = useState('')
+
+  function handleSearch(){
+    alert(`Input: ${input}`)
+  }
 
   return (
     <div className="container">
@@ -14,8 +18,13 @@ function App() {
       <h1 className="title">Buscador CEP</h1>
 
       <div className="containerInput">
-        <input type="text" placeholder="Digite o CEP ..." value={input}/>
-        <button className="buttonSearch">
+        <input 
+          type="text" 
+          placeholder="Digite o CEP ..." 
+          value={input}
+          onChange={(event) => setInput(event.target.value)}
+        />
+        <button className="buttonSearch" onClick={handleSearch}>
           <FiSearch size={25} color="#FFF"/>
         </button>
       </div>

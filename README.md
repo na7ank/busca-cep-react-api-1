@@ -1,5 +1,7 @@
 # busca-cep
+
 Uso de api com front em react para buscar informações de um cep.
+Tutorial: https://www.youtube.com/watch?v=oy4cbqE1_qc
 
 ## Início
 - ``npx create-react-app buscador``
@@ -142,6 +144,7 @@ Criar ``styles.css``:
     background: #FFF;
     width: 500px;
     border-radius: 8px;
+    color: #1d1f25;
 }
 
 .main h2 {
@@ -217,14 +220,24 @@ O useState é um hook fundamental no React que permite adicionar estado a compon
 import {useState} from 'react'
 
 function App() {
-  const [input, setInput] = useState('Teste 123')
+
+  const [input, setInput] = useState('')
+
+  function handleSearch(){
+    alert(`Input: ${input}`)
+  }
   ...
 ```
 
 ```html
 <input 
   type="text" 
-  placeholder="Digite o CEP ..."
+  placeholder="Digite o CEP ..." 
   value={input}
+  onChange={(event) => setInput(event.target.value)}
 />
+
+<button className="buttonSearch" onClick={handleSearch}>
+  <FiSearch size={25} color="#FFF"/>
+</button>
 ```
