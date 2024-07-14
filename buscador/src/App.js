@@ -1,16 +1,20 @@
 //import logo from './logo.svg';
 //import './App.css';
 import { FiSearch } from 'react-icons/fi'
+import {useState} from 'react'
 import './styles.css'
 
 function App() {
+
+  const [input, setInput] = useState('Teste useState')
+
   return (
     <div className="container">
 
       <h1 className="title">Buscador CEP</h1>
 
       <div className="containerInput">
-        <input type="text" placeholder="Digite o CEP ..."/>
+        <input type="text" placeholder="Digite o CEP ..." value={input}/>
         <button className="buttonSearch">
           <FiSearch size={25} color="#FFF"/>
         </button>

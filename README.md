@@ -205,3 +205,26 @@ function App() {
 
 export default App;
 ```
+
+## Trabalhando com dados Dinâmicos - **useState**
+
+O useState é um hook fundamental no React que permite adicionar estado a componentes funcionais. Ele é usado para gerenciar o estado de um componente, ou seja, as informações que mudam ao longo do tempo durante a execução da aplicação.
+
+- import {useState} from 'react'
+
+```javascript
+...
+import {useState} from 'react'
+
+function App() {
+  const [input, setInput] = useState('Teste 123')
+  ...
+```
+
+```html
+<input 
+  type="text" 
+  placeholder="Digite o CEP ..."
+  value={input}
+/>
+```
