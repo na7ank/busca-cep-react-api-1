@@ -243,4 +243,46 @@ function App() {
 ```
 
 ## Preparando para requisições API
-Antes disso criei uma branch de teste "test-branch".
+
+Instalamos o módulo axios
+- ``npm install axios``
+
+Criamos o diretório services dentro de src ``busca-cep/buscador/src/services`` e o arquivo `/services/api.js`
+
+```javascript
+// api.js
+import axios from "axios"
+
+const api = axios.create({
+    baseURL: "https://viacep.com.br/ws/"
+})
+
+export default api;
+```
+Importamos o script em ``app.js``
+```javascript
+import api from './services/api'
+```
+
+Modificação da função ``handleSearch()``
+```javascript
+// Primeira forma
+function handleSearch(){
+  alert(`Input: ${input}`)
+}
+
+// Forma completa
+async function handleSearch(){
+  if (input === ''){
+    alert("Preecnha algum CEP !")
+    return
+  }
+  try{
+    const response = await api.get(`${input}/json`)
+    console.log(response.data)
+  }catch{
+    alert("Ops ... Erro ao buscar !")
+    setInput("")
+  }
+}
+```
