@@ -243,4 +243,8 @@ function App() {
 ```
 
 ## Preparando para requisições API
-Antes disso criei uma branch de teste "test-branch".
+
+Instalamos o módulo axios
+- ``npm install axios``
+
+Criamos o diretório services dentro de src ``busca-cep/buscador/src/services`` e o arquivo `/services/api.js`
