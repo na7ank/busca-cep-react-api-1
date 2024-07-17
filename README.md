@@ -243,3 +243,4 @@ function App() {
 ```
 
 ## Preparando para requisições API
+Antes disso criei uma branch de teste "test-branch".
