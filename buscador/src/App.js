@@ -9,13 +9,29 @@ function App() {
 
   const [input, setInput] = useState('')
 
+  function formatCEP(txt){
+    let cep = txt.replace(/\D/g, '');
+    if (cep.length > 8) {
+        cep = cep.slice(0, 8);
+    }
+    if (cep.length > 5) {
+        cep = cep.replace(/^(\d{5})/, '$1-');
+    }
+    return cep;
+  }
+
+  function handleInputChange(event) {
+    const formattedValue = formatCEP(event.target.value);
+    setInput(formattedValue);
+  }
+
   async function handleSearch(){
     if (input === ''){
       alert("Preecnha algum CEP !")
       return
     }
     try{
-      const response = await api.get(`${input}/json`)
+      const response = await api.get(`${input.replace('-','')}/json`)
       console.log(response.data)
     }catch{
       alert("Ops ... Erro ao buscar !")
@@ -33,7 +49,7 @@ function App() {
           type="text" 
           placeholder="Digite o CEP ..." 
           value={input}
-          onChange={(event) => setInput(event.target.value)}
+          onChange={handleInputChange}
         />
         <button className="buttonSearch" onClick={handleSearch}>
           <FiSearch size={25} color="#FFF"/>
