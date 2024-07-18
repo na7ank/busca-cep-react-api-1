@@ -312,7 +312,7 @@ export function formatCEP(txt){
 }
 
 ```
-Alteramos ``App.js``, ``onChange={handleInputChange}``:
+Alteramos ``App.js``:
 ```javascript
 import {formatCEP} from './utils/funcoes.js'
 ```
