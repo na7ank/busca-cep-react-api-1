@@ -312,7 +312,7 @@ export function formatCEP(txt){
 }
 
 ```
-Alteramos ``App.js``, ``onChange={handleInputChange}``:
+Alteramos ``App.js``:
 ```javascript
 import {formatCEP} from './utils/funcoes.js'
 ```
@@ -330,4 +330,62 @@ Alteração do input ``onChange={handleInputChange}``
   value={input}
   onChange={handleInputChange}
 />
+```
+
+## Criando outro useState para guardar os dados da requisição:
+
+Definimos o novo useSate `const [cep, setCep]`
+```javascript
+// useState
+const [input, setInput] = useState('')
+const [cep, setCep] = useState({})
+```
+
+```javascript
+// useState
+const [input, setInput] = useState('')
+const [cep, setCep] = useState({})
+```
+Ajustamos a funcao assíncrona para enviar os dados da requisição para o novo useSate:
+```javascript
+async function handleSearch(){
+  if (input === ''){
+    alert("Preecnha algum CEP !")
+    return
+  }
+  try{
+    const response = await api.get(`${input.replace('-','')}/json`)
+    setCep(response.data)
+    setInput("")
+
+  }catch{
+    alert("Ops ... Erro ao buscar !")
+    setInput("")
+  }
+}
+```
+
+## Display dos dados retornados pela requisção:
+Ajustando o display dos valores recuperados:
+```javascript
+<main className="main">
+  <h2>CEP: {cep.cep}</h2>
+  <span>{cep.logradouro}</span>
+  <span>{cep.complemento}</span>
+  <span>{cep.bairro}</span>
+  <span>{cep.localidade} - {cep.uf}</span>
+</main>
+```
+
+Uma melhoria é mostrar o bloco main com o display de dados somente se houver algo dentro de cep. Para isso podemos usar a condicional `Object.keys(cep).length > 0`:
+```javascript
+{Object.keys(cep).length > 0 && (
+  <main className="main">
+    <h2>CEP: {cep.cep}</h2>
+    <span>{cep.logradouro}</span>
+    <span>{cep.complemento}</span>
+    <span>{cep.bairro}</span>
+    <span>{cep.localidade} - {cep.uf}</span>
+  </main>
+)}
 ```

@@ -7,8 +7,9 @@ import api from './services/api'
 import './styles.css'
 
 function App() {
-
+  // useState
   const [input, setInput] = useState('')
+  const [cep, setCep] = useState({})
 
   function handleInputChange(event) {
     const formattedValue = formatCEP(event.target.value);
@@ -22,7 +23,9 @@ function App() {
     }
     try{
       const response = await api.get(`${input.replace('-','')}/json`)
-      console.log(response.data)
+      setCep(response.data)
+      setInput("")
+
     }catch{
       alert("Ops ... Erro ao buscar !")
       setInput("")
@@ -45,14 +48,16 @@ function App() {
           <FiSearch size={25} color="#FFF"/>
         </button>
       </div>
+      {Object.keys(cep).length > 0 && (
+        <main className="main">
+          <h2>CEP: {cep.cep}</h2>
+          <span>{cep.logradouro}</span>
+          <span>{cep.complemento}</span>
+          <span>{cep.bairro}</span>
+          <span>{cep.localidade} - {cep.uf}</span>
+        </main>
+      )}
 
-      <main className="main">
-        <h2>CEP: 05590-140</h2>
-        <span>Rua Teste Algum</span>
-        <span>Complementos do CEP</span>
-        <span>Vila Rosa</span>
-        <span>Campo Grande - MS</span>
-      </main>
     </div>
   );
 }
