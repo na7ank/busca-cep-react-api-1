@@ -174,7 +174,7 @@ Criar ``styles.css``:
 }
 ```
 
-Estrutura ``App.js``:
+Estrutura inicial ``App.js``:
 
 ```javascript
 //import logo from './logo.svg';
@@ -209,11 +209,11 @@ function App() {
 export default App;
 ```
 
-## Trabalhando com dados Dinâmicos - **useState**
+## Trabalhando com dados Dinâmicos - Explicação **useState**
 
 O useState é um hook fundamental no React que permite adicionar estado a componentes funcionais. Ele é usado para gerenciar o estado de um componente, ou seja, as informações que mudam ao longo do tempo durante a execução da aplicação.
 
-- import {useState} from 'react'
+- ``import {useState} from 'react'``
 
 ```javascript
 ...
@@ -241,6 +241,9 @@ function App() {
   <FiSearch size={25} color="#FFF"/>
 </button>
 ```
+
+- ``value={input}``: Liga o valor do campo de entrada ao estado input. Isso significa que o valor exibido no campo será sempre igual ao valor do estado input.
+- ``onChange={(event) => setInput(event.target.value)}``: Define um manipulador de eventos para o evento ``onChange``. Cada vez que o valor do campo de entrada muda (quando o usuário digita algo), a função ``setInput`` é chamada com o novo valor ``event.target.value``, atualizando assim o estado ``input``.
 
 ## Preparando para requisições API
 
@@ -286,3 +289,8 @@ async function handleSearch(){
   }
 }
 ```
+
+## Resumo:
+- ``useState``: Gerencia o estado do componente App, permitindo que o valor do campo de entrada (input) seja atualizado e acessado.
+- ``handleSearch()``: Usa o valor do estado input para realizar uma busca na API, exibindo mensagens de erro ou resultados conforme necessário.
+- ``<input>``: Permite ao usuário digitar o CEP e atualiza o estado input com cada mudança, garantindo que o valor do campo de entrada esteja sempre sincronizado com o estado do componente.
