@@ -2,23 +2,13 @@
 //import './App.css';
 import { FiSearch } from 'react-icons/fi'
 import {useState} from 'react'
+import {formatCEP} from './utils/funcoes.js'
 import api from './services/api'
 import './styles.css'
 
 function App() {
 
   const [input, setInput] = useState('')
-
-  function formatCEP(txt){
-    let cep = txt.replace(/\D/g, '');
-    if (cep.length > 8) {
-        cep = cep.slice(0, 8);
-    }
-    if (cep.length > 5) {
-        cep = cep.replace(/^(\d{5})/, '$1-');
-    }
-    return cep;
-  }
 
   function handleInputChange(event) {
     const formattedValue = formatCEP(event.target.value);

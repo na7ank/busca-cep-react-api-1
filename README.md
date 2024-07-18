@@ -298,8 +298,9 @@ async function handleSearch(){
 ## Auto-Formatação do input cep:
 
 Criamos as funções para modificar o texto digitado dentro do input:
-```javascript  
-function formatCEP(txt){
+```javascript
+//utils/funcoes.js  
+export function formatCEP(txt){
   let cep = txt.replace(/\D/g, '');
   if (cep.length > 8) {
     cep = cep.slice(0, 8);
@@ -310,12 +311,18 @@ function formatCEP(txt){
   return cep;
 }
 
+```
+Alteramos ``App.js``, ``onChange={handleInputChange}``:
+```javascript
+import {formatCEP} from './utils/funcoes.js'
+```
+```javascript
 function handleInputChange(event) {
   const formattedValue = formatCEP(event.target.value);
   setInput(formattedValue);
 }
 ```
-Alteramos a tag input ``onChange={handleInputChange}``:
+Alteração do input ``onChange={handleInputChange}``
 ```html
 <input 
   type="text" 
