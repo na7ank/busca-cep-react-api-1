@@ -290,7 +290,44 @@ async function handleSearch(){
 }
 ```
 
-## Resumo:
+## Resumo até aqui:
 - ``useState``: Gerencia o estado do componente App, permitindo que o valor do campo de entrada (input) seja atualizado e acessado.
 - ``handleSearch()``: Usa o valor do estado input para realizar uma busca na API, exibindo mensagens de erro ou resultados conforme necessário.
 - ``<input>``: Permite ao usuário digitar o CEP e atualiza o estado input com cada mudança, garantindo que o valor do campo de entrada esteja sempre sincronizado com o estado do componente.
+
+## Auto-Formatação do input cep:
+
+Criamos as funções para modificar o texto digitado dentro do input:
+```javascript
+//utils/funcoes.js  
+export function formatCEP(txt){
+  let cep = txt.replace(/\D/g, '');
+  if (cep.length > 8) {
+    cep = cep.slice(0, 8);
+  }
+  if (cep.length > 5) {
+    cep = cep.replace(/^(\d{5})/, '$1-');
+  }
+  return cep;
+}
+
+```
+Alteramos ``App.js``, ``onChange={handleInputChange}``:
+```javascript
+import {formatCEP} from './utils/funcoes.js'
+```
+```javascript
+function handleInputChange(event) {
+  const formattedValue = formatCEP(event.target.value);
+  setInput(formattedValue);
+}
+```
+Alteração do input ``onChange={handleInputChange}``
+```html
+<input 
+  type="text" 
+  placeholder="Digite o CEP ..." 
+  value={input}
+  onChange={handleInputChange}
+/>
+```

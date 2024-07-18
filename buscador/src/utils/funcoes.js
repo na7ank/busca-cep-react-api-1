@@ -1,5 +1,5 @@
-export function formatCEP(input){
-    let cep = input.value.replace(/\D/g, '');
+export function formatCEP(txt){
+    let cep = txt.replace(/\D/g, '');
     if (cep.length > 8) {
         cep = cep.slice(0, 8);
     }

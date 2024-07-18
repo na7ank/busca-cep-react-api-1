@@ -2,6 +2,7 @@
 //import './App.css';
 import { FiSearch } from 'react-icons/fi'
 import {useState} from 'react'
+import {formatCEP} from './utils/funcoes.js'
 import api from './services/api'
 import './styles.css'
 
@@ -9,13 +10,18 @@ function App() {
 
   const [input, setInput] = useState('')
 
+  function handleInputChange(event) {
+    const formattedValue = formatCEP(event.target.value);
+    setInput(formattedValue);
+  }
+
   async function handleSearch(){
     if (input === ''){
       alert("Preecnha algum CEP !")
       return
     }
     try{
-      const response = await api.get(`${input}/json`)
+      const response = await api.get(`${input.replace('-','')}/json`)
       console.log(response.data)
     }catch{
       alert("Ops ... Erro ao buscar !")
@@ -33,7 +39,7 @@ function App() {
           type="text" 
           placeholder="Digite o CEP ..." 
           value={input}
-          onChange={(event) => setInput(event.target.value)}
+          onChange={handleInputChange}
         />
         <button className="buttonSearch" onClick={handleSearch}>
           <FiSearch size={25} color="#FFF"/>
