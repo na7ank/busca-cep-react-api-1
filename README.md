@@ -1,7 +1,8 @@
-# busca-cep
+# Interface busca CEP
+![Imagem 1](/img/busca.PNG)
 
 Uso de api com front em react para buscar informações de um cep.
-Tutorial: https://www.youtube.com/watch?v=oy4cbqE1_qc
+Tutorial original: https://www.youtube.com/watch?v=oy4cbqE1_qc
 
 ## Início
 - ``npx create-react-app buscador``
